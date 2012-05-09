@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+{% block title %}Home{% endblock %}
+{% block body %}
+    {% for entity in entities %}
+        <ul class='list'>
+            <li>{{ entity.title }} {{ entity.company }}</li>
+            <li>{{ entity.category.name }}</li>
+            <li>{{ entity.contract.name }}</li>
+            
+            <li>{% if entity.created %}{{ entity.created|date('d-m-Y') }}{% endif%}</li>
+        </ul>
+    {% endfor %}
+{% endblock %}

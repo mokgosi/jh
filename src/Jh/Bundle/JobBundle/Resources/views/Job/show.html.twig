@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+{% block title %}Job{% endblock %}
+{% block body %}
+<div id='job'>
+    <h1>{{ entity.title }}</h1>
+    <span class='company'>{{ entity.company }}</span>
+    <span class='contract'>{{ entity.contract.name }}</span>
+    <span class='contract'>{{ entity.reference }}</span>
+    <span class='contract'>{{ location.name }}</span>
+</div>
+{% endblock %}

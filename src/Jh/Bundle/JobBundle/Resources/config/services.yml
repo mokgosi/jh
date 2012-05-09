@@ -1,0 +1,4 @@
+reference.listener.persist:
+  class: Jh\JobBundle\Listener\CreateReference
+  tags:
+    - {name: doctrine.event_listener, event: postPersist }

@@ -1,0 +1,414 @@
+<?php
+
+namespace Jh\Bundle\JobBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Jh\Bundle\JobBundle\Entity\Job
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
+ */
+class Job
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    
+    /**
+     * @var string $reference
+     *
+     * @ORM\Column(name="reference", type="string", length=45)
+     */
+    private $reference;
+
+    /**
+     * @var string $title
+     *
+     * @ORM\Column(name="title", type="string", length=100)
+     */
+    private $title;
+
+    
+
+    /**
+     * @var text $description
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+    
+    /**
+     * @var text $package
+     *
+     * @ORM\Column(name="package", type="string", length=255)
+     */
+    private $package;
+    
+    /**
+     * @var string $company
+     *
+     * @ORM\Column(name="company", type="string", length=255)
+     */
+    private $company;
+    
+    /**
+     * @var string $email
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
+    
+    /**
+     * @var integer $category_id
+     *
+     * @ORM\Column(name="category_id", type="integer")
+     */
+    private $category_id;
+
+    /**
+     * @var integer $contract_id
+     *
+     * @ORM\Column(name="contract_id", type="integer")
+     */
+    private $contract_id;
+
+    /**
+     * @var integer $location_id
+     *
+     * @ORM\Column(name="location_id", type="integer")
+     */
+    private $location_id;
+    
+    /**
+     * @var integer $employment_equity_id
+     *
+     * @ORM\Column(name="equity_id", type="integer")
+     */
+    private $equity_id;
+
+    /**
+     * @var boolean $is_public
+     *
+     * @ORM\Column(name="is_public", type="boolean")
+     */
+    private $is_public;
+
+    /**
+     * @var datetime $created
+     *
+     * @ORM\Column(name="created", type="datetime")
+     */
+    private $created;
+
+    /**
+     * @var datetime $updated
+     *
+     * @ORM\Column(name="updated", type="datetime")
+     */
+    private $updated;
+
+    /**
+     * @var datetime $expires
+     *
+     * @ORM\Column(name="expires", type="datetime")
+     */
+    private $expires;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    protected $category;
+        
+    public function __construct() 
+    {
+        $this->setCreated(new \DateTime());
+        $this->setUpdated(new \DateTime());
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set category_id
+     *
+     * @param integer $categoryId
+     */
+    public function setCategoryId($categoryId)
+    {
+        $this->category_id = $categoryId;
+    }
+
+    /**
+     * Get category_id
+     *
+     * @return integer 
+     */
+    public function getCategoryId()
+    {
+        return $this->category_id;
+    }
+
+    /**
+     * Set contract_id
+     *
+     * @param integer $contractId
+     */
+    public function setContractId($contractId)
+    {
+        $this->contract_id = $contractId;
+    }
+
+    /**
+     * Get contract_id
+     *
+     * @return integer 
+     */
+    public function getContractId()
+    {
+        return $this->contract_id;
+    }
+
+    /**
+     * Set location_id
+     *
+     * @param integer $locationId
+     */
+    public function setLocationId($locationId)
+    {
+        $this->location_id = $locationId;
+    }
+
+    /**
+     * Get location_id
+     *
+     * @return integer 
+     */
+    public function getLocationId()
+    {
+        return $this->location_id;
+    }
+
+    /**
+     * Set description
+     *
+     * @param text $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * Get description
+     *
+     * @return text 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set how_to_apply
+     *
+     * @param string $howToApply
+     */
+    public function setHowToApply($howToApply)
+    {
+        $this->how_to_apply = $howToApply;
+    }
+
+    /**
+     * Get how_to_apply
+     *
+     * @return string 
+     */
+    public function getHowToApply()
+    {
+        return $this->how_to_apply;
+    }
+
+    /**
+     * Set company
+     *
+     * @param string $company
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
+    }
+
+    /**
+     * Get company
+     *
+     * @return string 
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set is_public
+     *
+     * @param boolean $isPublic
+     */
+    public function setIsPublic($isPublic)
+    {
+        $this->is_public = $isPublic;
+    }
+
+    /**
+     * Get is_public
+     *
+     * @return boolean 
+     */
+    public function getIsPublic()
+    {
+        return $this->is_public;
+    }
+
+    /**
+     * Set created
+     *
+     * @param datetime $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * Get created
+     *
+     * @return datetime 
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Set updated
+     *
+     * @param datetime $updated
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+    }
+    
+    /**
+     * @ORM\preUpdate
+     */
+    public function setUpdatedValue()
+    {
+       $this->setUpdated(new \DateTime());
+    }
+
+    /**
+     * Get updated
+     *
+     * @return datetime 
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * Set expires
+     *
+     * @param datetime $expires
+     */
+    public function setExpires($expires)
+    {
+        $this->expires = $expires;
+    }
+
+    /**
+     * Get expires
+     *
+     * @return datetime 
+     */
+    public function getExpires()
+    {
+        return $this->expires;
+    }
+    
+    /**
+     * Set expires
+     *
+     * @param string $package
+     */
+    public function setPackage($package)
+    {
+        $this->package = $package;
+    }
+
+    /**
+     * Get expires
+     *
+     * @return string 
+     */
+    public function getPackage()
+    {
+        return $this->package;
+    }
+}

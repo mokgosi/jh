@@ -1,0 +1,45 @@
+<h1>Suburb list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Province_id</th>
+            <th>Region_id</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('suburb_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.name }}</td>
+            <td>{{ entity.latitude }}</td>
+            <td>{{ entity.longitude }}</td>
+            <td>{{ entity.provinceid }}</td>
+            <td>{{ entity.regionid }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('suburb_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('suburb_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('suburb_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>
